@@ -1,0 +1,7 @@
+enum Constants {
+    
+    enum Api {
+        
+    }
+    
+}

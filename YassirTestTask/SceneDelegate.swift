@@ -5,8 +5,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     // MARK: - Private properties
-    private var movieStoryScenarioBuilder: MovieStoryScenarioBuilderProtocol?
-
+    private let movieStoryScenarioBuilder: MovieStoryScenarioBuilderProtocol = MovieStoryScenarioBuilder()
+    private var navigationController: UINavigationController?
+    
+    // MARK: - UIWindowSceneDelegate
     func scene(
         _ scene: UIScene, willConnectTo
         session: UISceneSession,
@@ -16,8 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow()
         window?.windowScene = scene
-        movieStoryScenarioBuilder = MovieStoryScenarioBuilder()
-        window?.rootViewController = movieStoryScenarioBuilder?.makeMovieListViewController()
+        let mainViewController = movieStoryScenarioBuilder.makeMovieListViewController()
+        navigationController = UINavigationController(rootViewController: mainViewController)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
